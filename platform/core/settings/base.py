@@ -46,7 +46,6 @@ LANGUAGES = (
     ("en", "English"),
     ("zh-hans", "简体中文"),
     ("de", "German"),
-    ("es", "Español"),
 )
 
 # https://docs.djangoproject.com/en/dev/ref/settings/#locale-paths
@@ -68,9 +67,9 @@ DATABASES["default"]["ATOMIC_REQUESTS"] = True
 DATABASES["default"]["ENGINE"] = "django.contrib.gis.db.backends.postgis"
 
 if env("DATABASE_OSM_URL", default=""):
-    DATABASES["osm"] = env.db("DATABASE_OSM_URL")
-    DATABASES["osm"]["ATOMIC_REQUESTS"] = True
-    DATABASES["osm"]["ENGINE"] = "django.contrib.gis.db.backends.postgis"
+    DATABASES["openstreetmap"] = env.db("DATABASE_OSM_URL")
+    DATABASES["openstreetmap"]["ATOMIC_REQUESTS"] = True
+    DATABASES["openstreetmap"]["ENGINE"] = "django.contrib.gis.db.backends.postgis"
 
 # URLS
 # ------------------------------------------------------------------------------
@@ -136,10 +135,10 @@ AUTHENTICATION_BACKENDS = [
 AUTH_USER_MODEL = "users.User"
 
 # https://docs.djangoproject.com/en/dev/ref/settings/#login-redirect-url
-# LOGIN_REDIRECT_URL = "users:redirect"
+LOGIN_REDIRECT_URL = "my_profile_view"
 
 # https://docs.djangoproject.com/en/dev/ref/settings/#login-url
-# LOGIN_URL = "account_login"
+LOGIN_URL = "account_login"
 
 # PASSWORDS
 # ------------------------------------------------------------------------------
@@ -258,11 +257,8 @@ TEMPLATES = [
 # https://docs.djangoproject.com/en/dev/ref/settings/#fixture-dirs
 FIXTURE_DIRS = (str(BASE_DIR / "fixtures"),)
 
-# DO NOT TOUCH THIS
+# https://docs.djangoproject.com/en/dev/ref/settings/#site-id
 SITE_ID = env("SITE_ID", default=1)
-
-# https://docs.djangoproject.com/en/dev/ref/settings/#login-redirect-url
-LOGIN_REDIRECT_URL = "users:redirect"
 
 # SECURITY
 # ------------------------------------------------------------------------------

@@ -35,6 +35,12 @@ TEMPLATES[0]["OPTIONS"]["debug"] = DEBUG  # noqa F405
 INSTALLED_APPS += ["django_yubin"]  # noqa F405
 EMAIL_BACKEND = env("DJANGO_EMAIL_BACKEND", default="django_yubin.smtp_queue.EmailBackend")
 
+#
+# ToDo: There are some warnings about the following line:
+# (models.W042) Auto-created primary key used when not defining a primary key type, by default 'django.db.models.AutoField'
+# To avoid them, you can uncomment following line:
+# DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
 
 # WhiteNoise
 # ------------------------------------------------------------------------------
